@@ -4,13 +4,21 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 const routes: Routes = [ 
   {
     path: '',
-    redirectTo: 'home',
-    pathMatch: 'full'
+    redirectTo: 'pages/propriedade',
+    pathMatch: 'full',
   },
   {
-    path: 'propriedade-rural',
-    loadChildren: () => import('./pages/propriedade-rural/propriedade-rural.module').then( m => m.PropriedadeRuralPageModule)
+    path: 'pages/propriedade',
+    loadChildren: () => import('./pages/propriedade/propriedade.module').then( m => m.PropriedadePageModule)
   },
+  {
+    path:'pages/declaracoes',
+    loadChildren:() => import('./pages/declaracoes/declaracoes.module').then( m => m.DeclaracoesPageModule)
+  },
+  {
+    path:'pages/lancamentos',
+    loadChildren:() => import('./pages/lancamentos/lancamentos.module').then( m => m.LancamentosPageModule)
+  }
 ];
 
 @NgModule({
