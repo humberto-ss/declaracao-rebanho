@@ -8,10 +8,17 @@ const routes: Routes = [
     {
       path: '',
       component: PropriedadePage
-    },
-    {
-      path: 'agronegocios',
-      loadChildren: () => import('./agronegocios/agronegocios.module').then( m => m.AgronegociosPageModule)
+      // children:[
+      //   {
+      //     path: 'agronegocios',
+      //     children:[
+      //       {
+      //         path:'',
+      //         loadChildren: () => import('./agronegocios/agronegocios.module').then( m => m.AgronegociosPageModule)
+      //       }
+      //     ]
+      //   }
+      // ]
     }
   
 ];

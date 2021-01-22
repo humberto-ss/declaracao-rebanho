@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { PropriedadePageRoutingModule } from './propriedade-routing.module';
 
 import { PropriedadePage } from './propriedade.page';
+import { ComponentsModule } from 'src/app/components/components.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    PropriedadePageRoutingModule
+    PropriedadePageRoutingModule,
+    ComponentsModule
   ],
   declarations: [PropriedadePage]
 })
