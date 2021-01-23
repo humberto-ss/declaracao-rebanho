@@ -1,9 +1,17 @@
-import { NgModule } from '@angular/core';
+import { NgModule, Component } from '@angular/core';
 import { PropriedadesRuraisComponent } from './propriedades-rurais/propriedades-rurais.component'
+import { IonicModule } from '@ionic/angular';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
+  imports:[
+    IonicModule,
+    FormsModule,
+    CommonModule
+  ],
   declarations:[
-    PropriedadesRuraisComponent
+    PropriedadesRuraisComponent,
   ],
   exports:[PropriedadesRuraisComponent]  
 })
