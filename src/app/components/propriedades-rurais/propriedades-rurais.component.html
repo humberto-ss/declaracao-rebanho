@@ -9,11 +9,12 @@
             [value]="propriedadeSelecionada"
             [(ngModel)]="propriedadeSelecionada"
             (ionChange)="setPropriedadeSelecionada(propriedadeSelecionada)"
-            class="myCustomSelect"
+            css-class="width:100% !important;"
           >
             <ion-select-option
               *ngFor="let propriedade of propriedades"
               [value]="propriedade"
+              
             >
               {{ propriedade.nome }}</ion-select-option
             >
