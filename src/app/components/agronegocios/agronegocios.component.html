@@ -1,3 +1,6 @@
-<p>
-  agronegocios works!
-</p>
+<ion-list>
+  <ion-item *ngFor="let agronegocio of agronegocios" [routerLink]="['propriedade','agronegocio']">
+    <ion-label position="stacked"> Grupo Produtor</ion-label>
+    <ion-input  disabled> {{agronegocio.nomeGrupoProdutor}}</ion-input>
+  </ion-item>
+</ion-list>

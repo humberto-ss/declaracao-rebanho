@@ -1,25 +1,33 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
+import { Subject } from 'rxjs';
 import { AgronegocioModel } from '../components/agronegocios/agronegocio.model';
 import { PropriedadesRuraisModel } from '../components/propriedades-rurais/propriedades-rurais.model';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AgronegocioService {
-    agronegocios: AgronegocioModel[];
-  constructor() { }
+export class AgronegocioService implements OnInit {
+  private _agronegocios: AgronegocioModel[];
+  agronegociosPropriedade: AgronegocioModel[];
+  private _agronegociosToComponent = new Subject<void>();
+
+  constructor() {
+    this.populaAgronegocios();
+  }
+   ngOnInit(){
+   }
 
   carregaAgronegocios(propriedadeSelecionada: PropriedadesRuraisModel){
     this.getAgronegociosModels(propriedadeSelecionada.id);
   }
 
   getAgronegociosModels(idPropriedade:number){
-    this.populaAgronegocios();
-    console.log(this.agronegocios.filter(agro=> agro.idPropriedade ===idPropriedade));
-    return this.agronegocios.filter(agro=> agro.idPropriedade ===idPropriedade);
+     this.agronegociosPropriedade = this._agronegocios.filter(agro=> agro.idPropriedade ===idPropriedade);
+     this._agronegociosToComponent.next();
   }
+
   populaAgronegocios(){
-    this.agronegocios=[
+    this._agronegocios=[
       new AgronegocioModel(
         0,
         0,
@@ -141,5 +149,13 @@ export class AgronegocioService {
         true
       )
     ]
+  }
+
+  get agronegocios(){
+    return [...this._agronegocios];
+  }
+
+  get agronegociosToComponent(){
+    return this._agronegociosToComponent
   }
 }

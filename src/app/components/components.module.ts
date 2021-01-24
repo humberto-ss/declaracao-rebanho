@@ -4,12 +4,14 @@ import { IonicModule } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AgronegociosComponent } from './agronegocios/agronegocios.component';
+import {RouterModule } from '@angular/router';
 
 @NgModule({
   imports:[
     IonicModule,
     FormsModule,
-    CommonModule
+    CommonModule,
+    RouterModule 
   ],
   declarations:[
     PropriedadesRuraisComponent,
