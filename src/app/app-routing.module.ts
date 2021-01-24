@@ -17,38 +17,47 @@ const routes: Routes = [
         path:'agronegocio',
         children:[
           {
+            path:':agronegocioId',
+            children:[{
+              path:'',
+              loadChildren: () => import('./pages/propriedade/agronegocio/agronegocio.module').then( m => m.AgronegocioPageModule)
+            },{
+              path:'lancamento',
+              children:[
+                {
+                  path:'novo',
+                  loadChildren: () => import('./pages/propriedade/agronegocio/lancamento/novo-lancamento/novo-lancamento.module').then( m => m.NovoLancamentoPageModule)
+                },{
+                  path:':lancamentoId',
+                  loadChildren: () => import('./pages/propriedade/agronegocio/lancamento/lancamento.module').then( m => m.LancamentoPageModule)
+                },{
+                  path:'',
+                  redirectTo:'/propriedade',
+                  pathMatch:'full'
+                }
+              ]
+            },{
+              path:'declaracao',
+              children:[
+                {
+                  path:'novo',
+                  loadChildren: () => import('./pages/propriedade/agronegocio/declaracao/nova-declaracao/nova-declaracao.module').then( m => m.NovaDeclaracaoPageModule)
+                },{
+                  path:':declaracaoId',
+                  loadChildren: () => import('./pages/propriedade/agronegocio/declaracao/declaracao.module').then( m => m.DeclaracaoPageModule)
+                },{
+                  path:'',
+                  redirectTo:'/propriedade',
+                  pathMatch:'full'
+                }
+              ]
+            }
+          ]
+          }
+          ,{
             path:'',
-            loadChildren: () => import('./pages/propriedade/agronegocio/agronegocio.module').then( m => m.AgronegocioPageModule)
-          },{
-            path:'lancamento',
-            children:[
-              {
-                path:'novo',
-                loadChildren: () => import('./pages/propriedade/agronegocio/lancamento/novo-lancamento/novo-lancamento.module').then( m => m.NovoLancamentoPageModule)
-              },{
-                path:':lancamentoId',
-                loadChildren: () => import('./pages/propriedade/agronegocio/lancamento/lancamento.module').then( m => m.LancamentoPageModule)
-              },{
-                path:'',
-                redirectTo:'/propriedade/agronegocio',
-                pathMatch:'full'
-              }
-            ]
-          },{
-            path:'declaracao',
-            children:[
-              {
-                path:'novo',
-                loadChildren: () => import('./pages/propriedade/agronegocio/declaracao/nova-declaracao/nova-declaracao.module').then( m => m.NovaDeclaracaoPageModule)
-              },{
-                path:':declaracaoId',
-                loadChildren: () => import('./pages/propriedade/agronegocio/declaracao/declaracao.module').then( m => m.DeclaracaoPageModule)
-              },{
-                path:'',
-                redirectTo:'/propriedade/agronegocio',
-                pathMatch:'full'
-              }
-            ]
+            redirectTo:'/propriedade',
+            pathMatch:'full'
           }
         ]
         }
