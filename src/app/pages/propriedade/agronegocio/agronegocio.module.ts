@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { AgronegocioPageRoutingModule } from './agronegocio-routing.module';
 
 import { AgronegocioPage } from './agronegocio.page';
+import { ComponentsModule } from 'src/app/components/components.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    AgronegocioPageRoutingModule
+    AgronegocioPageRoutingModule,
+    ComponentsModule
   ],
   declarations: [AgronegocioPage]
 })
