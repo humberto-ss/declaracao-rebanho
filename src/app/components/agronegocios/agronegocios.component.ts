@@ -21,4 +21,5 @@ export class AgronegociosComponent implements OnInit {
       }
     )
   }
+
 }

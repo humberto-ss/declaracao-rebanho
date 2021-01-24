@@ -1,23 +1,26 @@
-import { NgModule, Component } from '@angular/core';
-import { PropriedadesRuraisComponent } from './propriedades-rurais/propriedades-rurais.component'
-import { IonicModule } from '@ionic/angular';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { AgronegociosComponent } from './agronegocios/agronegocios.component';
-import { RouterModule} from '@angular/router';
-
+import { NgModule, Component } from "@angular/core";
+import { PropriedadesRuraisComponent } from "./propriedades-rurais/propriedades-rurais.component";
+import { IonicModule } from "@ionic/angular";
+import { CommonModule } from "@angular/common";
+import { FormsModule } from "@angular/forms";
+import { AgronegociosComponent } from "./agronegocios/agronegocios.component";
+import { RouterModule } from "@angular/router";
+import { LancamentosComponent } from "./lancamentos/lancamentos.component";
+import { DeclaracoesComponent } from "./declaracoes/declaracoes.component";
 
 @NgModule({
-  imports:[
-    IonicModule,
-    FormsModule,
-    CommonModule,
-    RouterModule
-  ],
-  declarations:[
+  imports: [IonicModule, FormsModule, CommonModule, RouterModule],
+  declarations: [
     PropriedadesRuraisComponent,
-    AgronegociosComponent
+    AgronegociosComponent,
+    LancamentosComponent,
+    DeclaracoesComponent
   ],
-  exports:[PropriedadesRuraisComponent,AgronegociosComponent]  
+  exports: [
+    PropriedadesRuraisComponent,
+    AgronegociosComponent,
+    LancamentosComponent,
+    DeclaracoesComponent
+  ],
 })
-export class ComponentsModule{}
+export class ComponentsModule {}
