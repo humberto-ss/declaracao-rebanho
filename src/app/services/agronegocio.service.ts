@@ -26,6 +26,10 @@ export class AgronegocioService implements OnInit {
      this._agronegociosToComponent.next();
   }
 
+  getAgronegociosPorId(idAgronegocio: number){
+    return this._agronegocios.find(agro=> agro.id ===idAgronegocio);
+  }
+
   populaAgronegocios(){
     this._agronegocios=[
       new AgronegocioModel(
