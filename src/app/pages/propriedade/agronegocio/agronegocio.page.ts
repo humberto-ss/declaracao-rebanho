@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NavController } from '@ionic/angular';
 import { AgronegocioModel } from 'src/app/components/agronegocios/agronegocio.model';
 import { AgronegocioService } from 'src/app/services/agronegocio.service';
+import { LancamentoService } from 'src/app/services/lancamento.service';
 
 @Component({
   selector: 'app-agronegocio',
@@ -13,13 +14,26 @@ export class AgronegocioPage implements OnInit {
   agronegocio: AgronegocioModel;
   blnShowLancamento: boolean = false;
   blnShowDeclaracao: boolean = false;
+
+
   constructor(
     private actvRouter: ActivatedRoute,
     private AgronegocioService: AgronegocioService,
     private navController: NavController
-  ) { }
+  ) {}
 
   ngOnInit() {
+    this.obtemAgronegocio();
+    this.blnShowLancamento = true;
+  }
+  segmentChanged(ev: any){
+    var blnSegment: boolean = true;
+    (ev.target.value ==='lancamentos')? blnSegment = true: blnSegment=false;
+    this.blnShowLancamento = blnSegment;
+    this.blnShowDeclaracao = !blnSegment;  
+  }
+
+  private obtemAgronegocio(){
     this.actvRouter.paramMap.subscribe(
       paramMap =>{
         if(!paramMap.has('agronegocioId')){
@@ -27,20 +41,14 @@ export class AgronegocioPage implements OnInit {
            return;
         }
         this.agronegocio = this.AgronegocioService.getAgronegociosPorId(+paramMap.get('agronegocioId'))
-
+  
         //Se nao localizou o agronegocio, retorna
         if(!this.agronegocio){
           this.navController.navigateBack('propriedade');
           return;
         }
+        this.AgronegocioService.setAgronegocioSelecionado(this.agronegocio);
       });
-      this.blnShowLancamento = true;
-  }
-  segmentChanged(ev: any){
-    var blnSegment: boolean = true;
-     (ev.target.value ==='lancamentos')? blnSegment = true: blnSegment=false;
-      this.blnShowLancamento = blnSegment;
-      this.blnShowDeclaracao = !blnSegment;  
   }
 
 
