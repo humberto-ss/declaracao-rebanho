@@ -1,9 +1,84 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>novo-lancamento</ion-title>
+    <ion-buttons>
+      <ion-back-button slot="start"></ion-back-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center" size="large">Novo Lançamento</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12" size-sm="8" offset-sm="2" name="ion-text-center">
+        <app-tipos-lancamentos></app-tipos-lancamentos> 
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
+  <ion-grid size="12" size-sm="8" offset-sm="2" name="ion-text-center">
+    <ion-row style="height: 150px;">
+      <ion-col size=4 name="ion-text-center" >
+        <input hidden value="0" id="agrupamento">
+        <!-- <div style="height: 100%;"> -->
+        <h5 style="padding-top:35%">{{categoriasEnum.ate_12_meses.nome}}</h5>
+        <h6>{{categoriasEnum.ate_12_meses.complemento}}</h6>
+        <!-- </div> -->
+      </ion-col>
+      <ion-col size=8 > 
+        <!-- <div style="height: 50%;"> -->
+          <ion-grid style="height: 100%;" no-padding>
+            <ion-row style="height: 50%;">
+              <ion-col>
+                <h5>{{subCategoriasEnum.femea.nome}}</h5>
+              </ion-col>
+              <ion-col>
+                <ion-fab>
+                  <ion-fab-button color="success" size="small" (click)="remove(0)">
+                    <ion-icon name="remove-outline"></ion-icon>
+                  </ion-fab-button>
+                </ion-fab>
+              </ion-col>
+              <ion-col name="ion-text-center">
+                <h3 style="padding-left:35%;">{{dataTemplate[0]}}</h3>
+              </ion-col>
+              <ion-col>
+                <ion-fab>
+                  <ion-fab-button color="success" size="small" (click)="add(0)">
+                    <ion-icon name="add"></ion-icon>
+                  </ion-fab-button>
+                </ion-fab>
+              </ion-col>
+            </ion-row>  
+            <ion-row style="height: 50%;" >
+              <ion-col>
+                <label>{{subCategoriasEnum.macho.nome}}</label>
+              </ion-col>
+              <ion-col name="ion-text-center">
+                <ion-fab>
+                  <ion-fab-button color="success" size="small" (click)="remove(1)">
+                    <ion-icon name="remove-outline"></ion-icon>
+                  </ion-fab-button>
+                </ion-fab>
+              </ion-col>
+              <ion-col name="ion-text-center">
+                <h3>{{dataTemplate[1]}}</h3>
+              </ion-col>
+              <ion-col >
+                <ion-fab>
+                  <ion-fab-button color="success" size="small" (click)="add(1)">
+                    <ion-icon name="add"></ion-icon>
+                  </ion-fab-button>
+                </ion-fab>
+              </ion-col>
+            </ion-row>  
+          </ion-grid>
+        <!-- </div> -->
+        <!-- <div style="height: 50%;">02</div> -->
+      </ion-col>
+    </ion-row>  
+  </ion-grid>
+  <!-- <div id="novoLancamento">
+  </div> -->
+  <ion-button (click)="salvar()">Salvar</ion-button>
 </ion-content>

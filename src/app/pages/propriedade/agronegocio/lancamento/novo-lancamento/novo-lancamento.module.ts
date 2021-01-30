@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { NovoLancamentoPageRoutingModule } from './novo-lancamento-routing.module';
 
 import { NovoLancamentoPage } from './novo-lancamento.page';
+import { ComponentsModule } from 'src/app/components/components.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    NovoLancamentoPageRoutingModule
+    NovoLancamentoPageRoutingModule,
+    ComponentsModule
   ],
   declarations: [NovoLancamentoPage]
 })
