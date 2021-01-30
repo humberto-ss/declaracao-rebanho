@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { DeclaracaoService } from 'src/app/services/declaracao.service';
+import { DeclaracaoModel } from './declaracao.model';
 
 @Component({
   selector: 'app-declaracoes',
@@ -6,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./declaracoes.component.scss'],
 })
 export class DeclaracoesComponent implements OnInit {
+  declaracoes: DeclaracaoModel[];
 
-  constructor() { }
+  constructor(private declaracaoService: DeclaracaoService) {}
 
-  ngOnInit() {}
+
+  ngOnInit() {
+    this.declaracoes =  this.declaracaoService.populaDeclaracoesComponent();
+  }
 
 }
