@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { DeclaracaoService } from 'src/app/services/declaracao.service';
+import { TipoExploracaoModel } from './tipo-exploracao.model';
 
 @Component({
   selector: 'app-tipos-exploracao',
@@ -6,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./tipos-exploracao.component.scss'],
 })
 export class TiposExploracaoComponent implements OnInit {
+  private tiposExploracao: TipoExploracaoModel[];
 
-  constructor() { }
 
-  ngOnInit() {}
+  constructor(private declaracaoService:DeclaracaoService) { }
+
+  ngOnInit() {
+    this.tiposExploracao = this.declaracaoService.tipoExploracao;
+  }
 
 }
