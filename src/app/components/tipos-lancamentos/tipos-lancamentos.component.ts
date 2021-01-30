@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { LancamentoService } from 'src/app/services/lancamento.service';
+import { TiposLancamentosModel } from './tipos-lancamentos.model';
 
 @Component({
   selector: 'app-tipos-lancamentos',
@@ -6,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./tipos-lancamentos.component.scss'],
 })
 export class TiposLancamentosComponent implements OnInit {
+  tiposLancamentosModel : TiposLancamentosModel[];
+  tipoLancamentoSelecionado : TiposLancamentosModel;
 
-  constructor() { }
+  constructor(private lancamentoService:LancamentoService) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.tiposLancamentosModel = this.lancamentoService.tiposLancamentos;
+  }
+
+  setTipoLancamentoSelecionado(tipoLancamentoSelecionado:TiposLancamentosModel){
+    this.lancamentoService.tipoLancamentoSelecionado = tipoLancamentoSelecionado;
+  }
 
 }
+
