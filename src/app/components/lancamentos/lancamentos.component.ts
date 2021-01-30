@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { LancamentosDTO } from 'src/app/DTOs/lancamentosDTO';
+import { LancamentoService } from 'src/app/services/lancamento.service';
+import { LancamentoModel} from './lancamento.model';
 
 @Component({
   selector: 'app-lancamentos',
@@ -6,9 +9,29 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./lancamentos.component.scss'],
 })
 export class LancamentosComponent implements OnInit {
+  lancamentosDTO: LancamentosDTO[]
+  lancamentos: LancamentoModel[] =[]
+  constructor(private lancamentoService:LancamentoService) { }
 
-  constructor() { }
-
-  ngOnInit() {}
-
+  ngOnInit() {
+    this.lancamentosDTO =  this.lancamentoService.obtemLancamentosPorAgronegocio()
+    this.transfereDTOtoModel();
+  }
+  
+  transfereDTOtoModel(){
+    for(let lancDTO of this.lancamentosDTO){
+      let lancamentoModel: LancamentoModel;
+      var qtd: number = 0;
+      for(let sub of lancDTO.subAgrupamento){
+          qtd +=sub.quantidade;
+      }
+      lancamentoModel = new LancamentoModel(
+        lancDTO.id,
+        lancDTO.dtLancamento,
+        lancDTO.tipoLancamento,
+        qtd
+      )
+      this.lancamentos.push(lancamentoModel)
+    }
+  }
 }

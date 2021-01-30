@@ -1,3 +1,7 @@
-<p>
-  lancamentos works!
-</p>
+<ion-list>
+  <ion-item *ngFor="let lancamento of lancamentos">
+    <label>{{lancamento.dtLancamento}}</label>
+    <span>{{lancamento.quantidade}}</span>
+  </ion-item>
+</ion-list>
+
