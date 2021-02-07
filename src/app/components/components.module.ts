@@ -9,6 +9,8 @@ import { LancamentosComponent } from "./lancamentos/lancamentos.component";
 import { DeclaracoesComponent } from "./declaracoes/declaracoes.component";
 import { TiposLancamentosComponent } from "./tipos-lancamentos/tipos-lancamentos.component";
 import { TiposExploracaoComponent } from "./tipos-exploracao/tipos-exploracao.component";
+import { BovinosComponent } from "./especie/bovinos/bovinos.component";
+import { OvinosComponent } from "./especie/ovinos/ovinos.component";
 
 @NgModule({
   imports: [IonicModule, FormsModule, CommonModule, RouterModule],
@@ -18,7 +20,9 @@ import { TiposExploracaoComponent } from "./tipos-exploracao/tipos-exploracao.co
     LancamentosComponent,
     DeclaracoesComponent,
     TiposLancamentosComponent,
-    TiposExploracaoComponent
+    TiposExploracaoComponent,
+    BovinosComponent,
+    OvinosComponent
   ],
   exports: [
     PropriedadesRuraisComponent,
@@ -26,7 +30,9 @@ import { TiposExploracaoComponent } from "./tipos-exploracao/tipos-exploracao.co
     LancamentosComponent,
     DeclaracoesComponent,
     TiposLancamentosComponent,
-    TiposExploracaoComponent
+    TiposExploracaoComponent,
+    BovinosComponent,
+    OvinosComponent
   ],
 })
 export class ComponentsModule {}
