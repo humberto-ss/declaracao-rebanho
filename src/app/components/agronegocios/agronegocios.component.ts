@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { AgronegocioDTO } from 'src/app/DTOs/agronegocioDTO';
 import { AgronegocioService } from 'src/app/services/agronegocio.service';
-import { AgronegocioModel } from './agronegocio.model';
+
 
 @Component({
   selector: 'app-agronegocios',
@@ -8,13 +9,14 @@ import { AgronegocioModel } from './agronegocio.model';
   styleUrls: ['./agronegocios.component.scss'],
 })
 export class AgronegociosComponent implements OnInit {
-  agronegocios : AgronegocioModel[];
+  agronegocios : AgronegocioDTO[];
   constructor(private agronegocioService:AgronegocioService) { 
     
   }
   
   ngOnInit() {
     this.agronegocios=this.agronegocioService.agronegociosPropriedade
+    
     this.agronegocioService.agronegociosToComponent.subscribe(
       () =>{
         this.agronegocios = this.agronegocioService.agronegociosPropriedade
