@@ -1,0 +1,28 @@
+ion-grid {
+  --ion-grid-column-padding: 0%;
+}
+ion-label {
+  text-align: center;
+  width: auto;
+}
+ion-button {
+  color: #065621;
+  --background: #c0dac6;
+}
+
+.first {
+  height: 110px;
+  border-top: solid 1px #ddd;
+  border-bottom: solid 1px #ddd;
+  // background-color: #f7f7f7;
+}
+.second {
+  border-left: solid 1px #ddd;
+}
+.third {
+  border-bottom: solid 1px #ddd;
+}
+ion-fab-button{
+  width: 40px;
+  height: 40px;
+}
