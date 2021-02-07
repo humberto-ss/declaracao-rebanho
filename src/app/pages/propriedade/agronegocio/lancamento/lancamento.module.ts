@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { LancamentoPageRoutingModule } from './lancamento-routing.module';
 
 import { LancamentoPage } from './lancamento.page';
+import { ComponentsModule } from 'src/app/components/components.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    LancamentoPageRoutingModule
+    LancamentoPageRoutingModule,
+    ComponentsModule
   ],
   declarations: [LancamentoPage]
 })
