@@ -1,5 +1,5 @@
 import { Injectable, OnInit } from '@angular/core';
-import { PropriedadesRuraisModel } from '../components/propriedades-rurais/propriedades-rurais.model';
+import { PropriedadeRuralDTO } from '../DTOs/propriedadeRuralDTO';
 import { AgronegocioService } from './agronegocio.service';
 import { PopulaDados } from "./populaDados";
 
@@ -7,20 +7,20 @@ import { PopulaDados } from "./populaDados";
   providedIn: 'root'
 })
 export class PropriedadeService implements OnInit{
-  propriedadesComponent: PropriedadesRuraisModel[];
-  propriedadeSelecionada: PropriedadesRuraisModel;
+  propriedadesComponent: PropriedadeRuralDTO[];
+  propriedadeSelecionada: PropriedadeRuralDTO;
   constructor(private agronegocioService: AgronegocioService) { }
 
   ngOnInit(){
     
   }
   
-  changePropriedade(propriedadeSelecionada: PropriedadesRuraisModel){
+  changePropriedade(propriedadeSelecionada: PropriedadeRuralDTO){
     this.propriedadeSelecionada = propriedadeSelecionada;
     this.agronegocioService.carregaAgronegocios(propriedadeSelecionada);
   }
-  populaPropriedadesComponent(){
-   return this.propriedadesComponent = new PopulaDados().populaPropriedadesComponent();
+  populaPropriedades(){
+   return this.propriedadesComponent = new PopulaDados().populaPropriedadesDTO();
   }
 
 }
