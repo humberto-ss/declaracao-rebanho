@@ -1,7 +1,8 @@
 import { ThrowStmt } from '@angular/compiler';
 import { Component, Input, OnInit } from '@angular/core';
+import { PropriedadeRuralDTO } from 'src/app/DTOs/propriedadeRuralDTO';
 import { PropriedadeService } from '../../services/propriedade.service'
-import { PropriedadesRuraisModel } from './propriedades-rurais.model';
+
 
 @Component({
   selector: 'app-propriedades-rurais',
@@ -9,8 +10,8 @@ import { PropriedadesRuraisModel } from './propriedades-rurais.model';
   styleUrls: ['./propriedades-rurais.component.scss']
 })
 export class PropriedadesRuraisComponent implements OnInit {
-  propriedades: PropriedadesRuraisModel[];
-  propriedadeSelecionada: PropriedadesRuraisModel;
+  propriedades: PropriedadeRuralDTO[];
+  propriedadeSelecionada: PropriedadeRuralDTO;
   // @Input() propriedade: PropriedadesRuraisModel;
 
   constructor(private propriedadeService : PropriedadeService) { 
@@ -18,7 +19,7 @@ export class PropriedadesRuraisComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.propriedades = this.propriedadeService.populaPropriedadesComponent();
+    this.propriedades = this.propriedadeService.populaPropriedades();
     this.propriedadeSelecionada = this.propriedades[0];
     // this.propriedade = this.propriedades[0];
     this.propriedadeService.changePropriedade(this.propriedades[0]);
