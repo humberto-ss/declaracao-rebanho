@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NavController } from '@ionic/angular';
-import { AgronegocioModel } from 'src/app/components/agronegocios/agronegocio.model';
+import { AgronegocioDTO } from 'src/app/DTOs/agronegocioDTO';
 import { AgronegocioService } from 'src/app/services/agronegocio.service';
 import { LancamentoService } from 'src/app/services/lancamento.service';
 
@@ -11,7 +11,7 @@ import { LancamentoService } from 'src/app/services/lancamento.service';
   styleUrls: ['./agronegocio.page.scss'],
 })
 export class AgronegocioPage implements OnInit {
-  agronegocio: AgronegocioModel;
+  agronegocio: AgronegocioDTO;
   blnShowLancamento: boolean = false;
   blnShowDeclaracao: boolean = false;
 
@@ -23,9 +23,10 @@ export class AgronegocioPage implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.obtemAgronegocio();
     this.blnShowLancamento = true;
+    this.obtemAgronegocio();
   }
+  
   segmentChanged(ev: any){
     var blnSegment: boolean = true;
     (ev.target.value ==='lancamentos')? blnSegment = true: blnSegment=false;
