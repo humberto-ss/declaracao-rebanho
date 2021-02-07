@@ -1,7 +1,7 @@
-import { Injectable } from '@angular/core';
-import { AgronegocioModel } from '../components/agronegocios/agronegocio.model';
-import { LancamentoModel } from '../components/lancamentos/lancamento.model';
+import { Injectable, OnInit } from '@angular/core';
+// import { LancamentoModel } from '../components/lancamentos/lancamento.model';
 import { TiposLancamentosModel } from '../components/tipos-lancamentos/tipos-lancamentos.model';
+import { AgronegocioDTO } from '../DTOs/agronegocioDTO';
 import { LancamentosDTO } from '../DTOs/lancamentosDTO';
 import { CategoriasEnum } from '../util/categoriasEnum' 
 import { SubCategoriaEnum } from '../util/subCategoriaEnum' 
@@ -11,16 +11,18 @@ import { PopulaDados } from "./populaDados";
 @Injectable({
   providedIn: 'root'
 })
-export class LancamentoService {
+export class LancamentoService implements OnInit {
   private _lancamentos: LancamentosDTO[];
   private _tiposLancamentos: TiposLancamentosModel[];
   private _tipoLancamentoSelecionado: TiposLancamentosModel;
-  agronegocioModel: AgronegocioModel;
+  agronegocio: AgronegocioDTO;
 
   constructor(private agronegocioService:AgronegocioService) { 
-    this.populaLancamentosComponent();
     this.populaTiposLancamentosModel();
-    this.setAgronegocio(this.agronegocioService.agronegocioSelecionado);
+    this.populaLancamentosComponent();
+  }
+  
+  ngOnInit(){
   }
 
   get lancamentos(){
@@ -39,30 +41,34 @@ export class LancamentoService {
     this._tipoLancamentoSelecionado = selectedType;
   }
 
-  setAgronegocio(agronegocioModel: AgronegocioModel){
-    this.agronegocioModel = agronegocioModel;
+  getLancamentoPorId(lancamentoId: number){
+    return this.lancamentos.find( lancamento => lancamento.id === lancamentoId);
+  }
+
+  setAgronegocio(agronegocioModel: AgronegocioDTO){
+    this.agronegocio = agronegocioModel;
   }
 
   obtemLancamentosPorAgronegocio(){
-    return this.lancamentos.filter( lanc => lanc.idAgronegocio === this.agronegocioModel.id)
+    this.obtemAgronegocioSelecionado();
+    return this.lancamentos.filter( lanc => lanc.idAgronegocio === this.agronegocio.id)
+  }
+
+  obtemAgronegocioSelecionado(){
+    this.setAgronegocio(this.agronegocioService.agronegocioSelecionado);
   }
 
   private populaTiposLancamentosModel(){
-    return this._tiposLancamentos = [
-      new TiposLancamentosModel(
-        0,
-        "Evolução Rebanho",
-        false
-      ),
-      new TiposLancamentosModel(
-        1,
-        "Sem Movimentação",
-        false
-      )
-    ]
+    return this._tiposLancamentos = new PopulaDados().populaTiposLancamentos();
+    
   }
 
   private populaLancamentosComponent(){
     this._lancamentos = new PopulaDados().populaLancamentosComponent();
+  }
+
+  salvarNovo(lancamento:LancamentosDTO){
+    //Chamar Controller para Enviar para banco externo
+    //Chamar Controller para gravar no banco local
   }
 }
