@@ -1,5 +1,30 @@
 <ion-list>
   <ion-item *ngFor="let declaracao of declaracoes">
-    <ion-label> {{declaracao.qtdDeclarada}} </ion-label>
+    <div ion-grid style="width: 100%;">
+      <ion-row>
+        <ion-col>
+          <ion-label position="stacked">Tipo Exploração</ion-label>
+          <h6> {{declaracao.tipoExploracao.nome}} </h6>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-label position="stacked">Data:</ion-label>
+          <h6>{{declaracao.dtDeclaracao}}</h6>
+        </ion-col >
+        <ion-col *ngIf="declaracao.dtEnvio" class="ion-text-center">
+          <ion-label position=stacked>status</ion-label>
+          <ion-icon class="enviado" name="checkmark-done-outline" size="large" style="align-self: flex-end;"></ion-icon>
+          <!-- <ion-icon class="enviado" name="checkmark-circle-outline" size="large" ></ion-icon> -->
+          <ion-text>Enviado</ion-text>
+        </ion-col>
+        <ion-col *ngIf="!declaracao.dtEnvio" class="ion-text-center">
+          <ion-icon class="naoEnviado" name="checkmark-outline" size="large"></ion-icon>
+          <!-- <ion-icon class="naoEnviado" name="ellipse-outline" size="large"></ion-icon> -->
+          <ion-text>Não Enviado</ion-text>
+        </ion-col>
+      </ion-row>
+    </div>
   </ion-item>
 </ion-list>
+

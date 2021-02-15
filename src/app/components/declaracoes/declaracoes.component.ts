@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DeclaracaoDTO } from 'src/app/DTOs/declaracaoDTO';
 import { DeclaracaoService } from 'src/app/services/declaracao.service';
 import { DeclaracaoModel } from './declaracao.model';
 
@@ -8,13 +9,16 @@ import { DeclaracaoModel } from './declaracao.model';
   styleUrls: ['./declaracoes.component.scss'],
 })
 export class DeclaracoesComponent implements OnInit {
-  declaracoes: DeclaracaoModel[];
+  // declaracoes: DeclaracaoModel[];
+  declaracoes: DeclaracaoDTO[];
 
-  constructor(private declaracaoService: DeclaracaoService) {}
-
-
-  ngOnInit() {
-    this.declaracoes =  this.declaracaoService.populaDeclaracoesComponent();
+  constructor(private declaracaoService: DeclaracaoService) {
   }
+  
+  
+  ngOnInit() {
+    this.declaracoes =  this.declaracaoService.obtemDeclaracoesPorAgronegocio();
+  }
+
 
 }
