@@ -5,18 +5,80 @@ import { EspecieAnimalEnum } from "../util/especieAnimalEnum";
 import { RacaEnum } from "../util/racaEnum";
 import { SubCategoriaEnum } from "../util/subCategoriaEnum";
 import { PropriedadeRuralDTO } from "../DTOs/propriedadeRuralDTO";
-import { EspecieAnimalDTO} from '../DTOs/especieAnimalDTO'
-import { AgronegocioDTO} from '../DTOs/agronegocioDTO';
+import { EspecieAnimalDTO } from "../DTOs/especieAnimalDTO";
+import { AgronegocioDTO } from "../DTOs/agronegocioDTO";
 import { TiposLancamentosModel } from "../components/tipos-lancamentos/tipos-lancamentos.model";
+import { HttpClient } from "@angular/common/http";
+import {tap} from 'rxjs/operators';
+import { LancamentosDTO } from "../DTOs/lancamentosDTO";
 
 export class PopulaDados {
   private propriedadesRurais: PropriedadeRuralDTO[];
-  private tiposLancamento: TiposLancamentosModel[]=[];
+  private tiposLancamento: TiposLancamentosModel[] = [];
+  private lancamentos: LancamentosDTO[];
+  private tipoExploracao: TipoExploracaoModel[] = [];
   constructor() {
     this.propriedadesRurais = this.populaPropriedadesDTO();
     this.tiposLancamento = this.populaTiposLancamentos();
-
+    this.lancamentos = this.populaLancamentosComponent();
+    this.tipoExploracao = this.populaTipoExploracao();
   }
+
+  populaDeclaracoes(){
+    return [
+      {
+        id:0,
+        idAgronegocio:0,
+        dtDeclaracao: '11/02/2021',
+        statusEnvio:true,
+        dtEnvio:'11/02/2021',
+        subAgrupamento: [
+          {
+            idSubAgrupamento: 0,
+            idAgrupamento: 0,
+            quantidade:30
+          },
+          {
+            idSubAgrupamento: 1,
+            idAgrupamento: 0,
+            quantidade:35
+          },
+          {
+            idSubAgrupamento: 2,
+            idAgrupamento: 1,
+            quantidade:9
+          }
+        ],
+        tipoExploracao: this.tipoExploracao[0]
+      },
+      {
+        id:1,
+        idAgronegocio:0,
+        dtDeclaracao: '01/05/2020',
+        statusEnvio:true,
+        dtEnvio:'01/05/2020',
+        subAgrupamento: [
+          {
+            idSubAgrupamento: 3,
+            idAgrupamento: 0,
+            quantidade:1
+          },
+          {
+            idSubAgrupamento: 4,
+            idAgrupamento: 0,
+            quantidade:16
+          },
+          {
+            idSubAgrupamento: 7,
+            idAgrupamento: 1,
+            quantidade:9
+          }
+        ],
+        tipoExploracao: this.tipoExploracao[1]
+      }
+    ]
+  }
+
 
   populaDeclaracoesComponent() {
     return [
@@ -39,7 +101,7 @@ export class PopulaDados {
           quantidade: 10,
         },
       ]),
-      new DeclaracaoModel(3, 0, "01/07/2019", 50, true, '01/07/2019', [
+      new DeclaracaoModel(3, 0, "01/07/2019", 50, true, "01/07/2019", [
         {
           idSubAgrupamento: SubCategoriaEnum.macho.id,
           idAgrupamento: CategoriasEnum.de_25_a_36_meses.id,
@@ -51,7 +113,7 @@ export class PopulaDados {
           quantidade: 20,
         },
       ]),
-      new DeclaracaoModel(4, 3, "02/02/2020", 9, true, '02/02/2020', [
+      new DeclaracaoModel(4, 3, "02/02/2020", 9, true, "02/02/2020", [
         {
           idSubAgrupamento: SubCategoriaEnum.macho.id,
           idAgrupamento: CategoriasEnum.de_25_a_36_meses.id,
@@ -67,6 +129,7 @@ export class PopulaDados {
   }
 
   populaPropriedadesDTO() {
+
     return [
       {id:0, nome: "Estrela da Morte", area: 20, inscricaoEstadual: "RS1241412BR"},
       {id:1, nome: "Vulcano", area: 50, inscricaoEstadual: "RS000000BR"},
@@ -76,22 +139,22 @@ export class PopulaDados {
   }
 
   populaAgronegocios() {
-    return[
-       {
-        id:0,
-        idGrupoProdutor:0,
+    return [
+      {
+        id: 0,
+        idGrupoProdutor: 0,
         nomeGrupoProdutor: "LUKE SKYWALKER, ANAKIN SKYWALKER",
         especieAnimal: EspecieAnimalEnum.bovinos,
         propriedadeRural: this.propriedadesRurais[0],
-        status: true
+        status: true,
       },
       {
         id: 1,
         idGrupoProdutor: 0,
         nomeGrupoProdutor: "LUKE SKYWALKER",
         especieAnimal: EspecieAnimalEnum.bubalinos,
-        propriedadeRural:  this.propriedadesRurais[0],
-        status: true
+        propriedadeRural: this.propriedadesRurais[0],
+        status: true,
       },
       {
         id: 2,
@@ -99,7 +162,7 @@ export class PopulaDados {
         nomeGrupoProdutor: "LUKE SKYWALKER, PRINCESS LEIA ORGANA SKYWALKER",
         especieAnimal: EspecieAnimalEnum.caprinos,
         propriedadeRural: this.propriedadesRurais[0],
-        status: false
+        status: false,
       },
       {
         id: 3,
@@ -107,7 +170,7 @@ export class PopulaDados {
         nomeGrupoProdutor: "SPOCK, JAMES T. KIRK",
         especieAnimal: EspecieAnimalEnum.bovinos,
         propriedadeRural: this.propriedadesRurais[1],
-        status: true
+        status: true,
       },
       {
         id: 4,
@@ -115,7 +178,7 @@ export class PopulaDados {
         nomeGrupoProdutor: "SPOCK, JAMES T. KIRK",
         especieAnimal: EspecieAnimalEnum.bubalinos,
         propriedadeRural: this.propriedadesRurais[1],
-        status: true
+        status: true,
       },
       {
         id: 5,
@@ -123,7 +186,7 @@ export class PopulaDados {
         nomeGrupoProdutor: "THOR, LOKI",
         especieAnimal: EspecieAnimalEnum.bovinos,
         propriedadeRural: this.propriedadesRurais[2],
-        status: true
+        status: true,
       },
       {
         id: 6,
@@ -131,7 +194,7 @@ export class PopulaDados {
         nomeGrupoProdutor: "THOR, LOKI, ODIN, FRIGGA",
         especieAnimal: EspecieAnimalEnum.bovinos,
         propriedadeRural: this.propriedadesRurais[2],
-        status: true
+        status: true,
       },
       {
         id: 7,
@@ -139,7 +202,7 @@ export class PopulaDados {
         nomeGrupoProdutor: "LOKI, HELA",
         especieAnimal: EspecieAnimalEnum.abelhas,
         propriedadeRural: this.propriedadesRurais[2],
-        status: true
+        status: true,
       },
       {
         id: 8,
@@ -147,7 +210,7 @@ export class PopulaDados {
         nomeGrupoProdutor: "BATMAN, BRUCE, ALFRED",
         especieAnimal: EspecieAnimalEnum.bovinos,
         propriedadeRural: this.propriedadesRurais[3],
-        status:true
+        status: true,
       },
       {
         id: 9,
@@ -155,7 +218,7 @@ export class PopulaDados {
         nomeGrupoProdutor: "LUCIUS FOX, BARBARA GORDON, JAMES W. GORDON",
         especieAnimal: EspecieAnimalEnum.abelhas,
         propriedadeRural: this.propriedadesRurais[3],
-        status:true
+        status: true,
       },
       {
         id: 10,
@@ -163,15 +226,15 @@ export class PopulaDados {
         nomeGrupoProdutor: "BATMAN, ROBIN",
         especieAnimal: EspecieAnimalEnum.bubalinos,
         propriedadeRural: this.propriedadesRurais[3],
-        status:true
+        status: true,
       },
       {
         id: 11,
         idGrupoProdutor: 3,
         nomeGrupoProdutor: "DUAS CARAS, CHARADA",
-        especieAnimal:EspecieAnimalEnum.caprinos,
+        especieAnimal: EspecieAnimalEnum.caprinos,
         propriedadeRural: this.propriedadesRurais[3],
-        status:true
+        status: true,
       },
       {
         id: 12,
@@ -179,7 +242,7 @@ export class PopulaDados {
         nomeGrupoProdutor: "MULHER-GATO, PINGUIM, ESPANTALHO",
         especieAnimal: EspecieAnimalEnum.aves,
         propriedadeRural: this.propriedadesRurais[3],
-        status:true
+        status: true,
       },
       {
         id: 13,
@@ -187,16 +250,16 @@ export class PopulaDados {
         nomeGrupoProdutor: "CORINGA, HARLEY QUINN",
         especieAnimal: EspecieAnimalEnum.abelhas,
         propriedadeRural: this.propriedadesRurais[3],
-        status:true
+        status: true,
       },
       {
-        id:14,
-        idGrupoProdutor:3,
+        id: 14,
+        idGrupoProdutor: 3,
         nomeGrupoProdutor: "RAS AL GHUL, TALIA AL GHUL",
         especieAnimal: EspecieAnimalEnum.bovinos,
         propriedadeRural: this.propriedadesRurais[3],
-        status:true
-      }
+        status: true,
+      },
     ];
   }
 
@@ -207,8 +270,8 @@ export class PopulaDados {
         idAgronegocio: 0,
         dtLancamento: "10/01/2020",
         tipoLancamento: this.tiposLancamento[0],
-        blnEnviado:true,
-        dtEnvio: '11/01/2020',
+        blnEnviado: true,
+        dtEnvio: "11/01/2020",
         subAgrupamento: [
           {
             idAgrupamento: CategoriasEnum.ate_12_meses.id,
@@ -227,7 +290,7 @@ export class PopulaDados {
         idAgronegocio: 1,
         dtLancamento: "14/01/2020",
         tipoLancamento: this.tiposLancamento[1],
-        blnEnviado:false,
+        blnEnviado: false,
         subAgrupamento: [
           {
             idAgrupamento: CategoriasEnum.de_13_a_24_meses.id,
@@ -238,9 +301,9 @@ export class PopulaDados {
             idAgrupamento: CategoriasEnum.de_13_a_24_meses.id,
             idSubAgrupamento: SubCategoriaEnum.macho.id,
             quantidade: 2,
-          }
-        ]
-      }
+          },
+        ],
+      },
     ];
   }
 
@@ -375,19 +438,10 @@ export class PopulaDados {
       ),
     ];
   }
-  populaTiposLancamentos(){
+  populaTiposLancamentos() {
     return [
-      new TiposLancamentosModel(
-        0,
-        "Evolução Rebanho",
-        false
-      ),
-      new TiposLancamentosModel(
-        1,
-        "Sem Movimentação",
-        false
-      )
-    ]
-    
+      new TiposLancamentosModel(0, "Evolução Rebanho", false),
+      new TiposLancamentosModel(1, "Sem Movimentação", false),
+    ];
   }
 }
