@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DeclaracaoService } from 'src/app/services/declaracao.service';
 
 @Component({
   selector: 'app-nova-declaracao',
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NovaDeclaracaoPage implements OnInit {
 
-  constructor() { }
+  constructor(private declaracaoService:DeclaracaoService) { }
 
   ngOnInit() {
+    
   }
 
 }

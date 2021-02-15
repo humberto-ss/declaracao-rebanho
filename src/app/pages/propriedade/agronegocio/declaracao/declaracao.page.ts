@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DeclaracaoService } from 'src/app/services/declaracao.service';
 
 @Component({
   selector: 'app-declaracao',
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DeclaracaoPage implements OnInit {
 
-  constructor() { }
+  constructor(private declaracaoService:DeclaracaoService) { }
 
   ngOnInit() {
+    console.log(this.declaracaoService.tipoExploracao)
   }
 
 }
