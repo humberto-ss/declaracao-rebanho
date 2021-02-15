@@ -1,22 +1,36 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { AuthService } from '../services/auth.service';
+import { Router } from "@angular/router";
+import { Component, OnInit } from "@angular/core";
+import { AuthService } from "../services/auth.service";
+import { ControllerService } from "../services/controller.service";
 
 @Component({
-  selector: 'app-auth',
-  templateUrl: './auth.page.html',
-  styleUrls: ['./auth.page.scss'],
+  selector: "app-auth",
+  templateUrl: "./auth.page.html",
+  styleUrls: ["./auth.page.scss"],
 })
 export class AuthPage implements OnInit {
+  logged:boolean = false;
 
-  constructor(private authService: AuthService, private route: Router) { }
+  constructor(
+    private authService: AuthService,
+    private route: Router,
+    private controllerService: ControllerService
+  ) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
-  onLogin(){
+  onLogin() {
     this.authService.login();
-    this.route.navigateByUrl('/propriedade');  
+    this.logged = this.authService.isUserLogin;
+
+    if(this.logged){
+
+      this.redirectTo()
+    }
+    this.controllerService.init();
   }
 
+  redirectTo(){
+    setTimeout( () => this.route.navigateByUrl("/propriedade") ,5000);
+  }
 }
