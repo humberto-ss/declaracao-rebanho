@@ -16,7 +16,7 @@ export class BovinosComponent implements OnInit {
   util:Util = new Util();
   dataTemplate: number[] = [0, 0, 0, 0, 0, 0, 0, 0];
   @Output() salvarBovinos = new EventEmitter();
-  @Input() lancamentoSelecionado;
+  @Input() objetoSelecionado;
   blnEdit: boolean = true;
 
   constructor() { }
@@ -26,11 +26,11 @@ export class BovinosComponent implements OnInit {
   }
 
   populaData(){
-    if(!this.lancamentoSelecionado)
+    if(!this.objetoSelecionado)
       return
    this.blnEdit = false;
 
-    for(let sub of this.lancamentoSelecionado.subAgrupamento){
+    for(let sub of this.objetoSelecionado.subAgrupamento){
       switch (sub.idAgrupamento){
         case CategoriasEnum.ate_12_meses.id:        
           (sub.idSubAgrupamento === SubCategoriaEnum.femea.id)? this.dataTemplate[0] = sub.quantidade :this.dataTemplate[1] = sub.quantidade;
