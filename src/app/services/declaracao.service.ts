@@ -7,6 +7,7 @@ import { PopulaDados } from "./populaDados"
 import { DeclaracaoModel } from "../components/declaracoes/declaracao.model";
 import { DeclaracoesComponent } from "../components/declaracoes/declaracoes.component";
 import { AgronegocioDTO } from '../DTOs/agronegocioDTO'
+import { DeclaracaoDTO } from "../DTOs/declaracaoDTO";
 
 @Injectable({
   providedIn: "root",
@@ -15,7 +16,7 @@ export class DeclaracaoService implements OnInit {
   private _tipoExploracaoPopulado: TipoExploracaoModel[];
   private _tipoExploracao: TipoExploracaoModel[]=[];
   private tipoExploracaoSelecionado: TipoExploracaoModel;
-  private _declaracoesComponent:DeclaracaoModel[];
+  private _declaracoesComponent:DeclaracaoDTO[];
 
   agronegocioSelecionado: AgronegocioDTO;
 
@@ -57,7 +58,7 @@ export class DeclaracaoService implements OnInit {
   }
 
   populaDeclaracoesComponent(){
-    this._declaracoesComponent = new PopulaDados().populaDeclaracoesComponent();
+    this._declaracoesComponent = new PopulaDados().populaDeclaracoes();
   }
 
   populaTipoExploracao() {
