@@ -1,5 +1,6 @@
 import { ThrowStmt } from '@angular/compiler';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { PropriedadeRuralDTO } from 'src/app/DTOs/propriedadeRuralDTO';
 import { PropriedadeService } from '../../services/propriedade.service'
 
@@ -10,23 +11,27 @@ import { PropriedadeService } from '../../services/propriedade.service'
   styleUrls: ['./propriedades-rurais.component.scss']
 })
 export class PropriedadesRuraisComponent implements OnInit {
-  propriedades: PropriedadeRuralDTO[];
-  propriedadeSelecionada: PropriedadeRuralDTO;
-  // @Input() propriedade: PropriedadesRuraisModel;
+  @Input() propriedades: PropriedadeRuralDTO[];
+  @Input() propriedadeSelecionada: PropriedadeRuralDTO;
 
-  constructor(private propriedadeService : PropriedadeService) { 
-    
-  }
+  isLoading:boolean=false;
+  constructor(private propriedadeService : PropriedadeService) { }
 
   ngOnInit() {
-    this.propriedades = this.propriedadeService.populaPropriedades();
-    this.propriedadeSelecionada = this.propriedades[0];
+  //  this.propriedadeService.propriedades.subscribe(prop =>{
+  //   this.propriedadeService.populaPropriedades().subscribe( prop =>{
+  //   this.propriedades = prop;
+  //  })
+    //this.propriedadeSelecionada = this.propriedades[0];
     // this.propriedade = this.propriedades[0];
-    this.propriedadeService.changePropriedade(this.propriedades[0]);
+    // this.propriedadeService.changePropriedade(this.propriedades[0]);
+    if(this.propriedadeSelecionada)
+      this.setPropriedadeSelecionada();
   }
+
   setPropriedadeSelecionada(): void{
-    // this.propriedade = this.propriedadeSelecionada;
     this.propriedadeService.changePropriedade(this.propriedadeSelecionada);
   }
+
 
 }

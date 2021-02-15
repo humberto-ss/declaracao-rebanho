@@ -1,7 +1,7 @@
 <ion-grid>
   <ion-row>
     <ion-col>
-      <ion-list>
+      <ion-list *ngIf="propriedades">
         <ion-item>
           <ion-label position="stacked">Propriedade Rural</ion-label>
           <ion-select 
@@ -15,14 +15,13 @@
               *ngFor="let propriedade of propriedades"
               [value]="propriedade"
             >
-              {{ propriedade.nome }}</ion-select-option
-            >
+              {{ propriedade.nome }}</ion-select-option>
           </ion-select>
         </ion-item>
       </ion-list>
     </ion-col>
   </ion-row>
-  <ion-row>
+  <ion-row *ngIf="propriedadeSelecionada">
     <ion-col size="5">
       <ion-item>
         <ion-label position="stacked"> Área</ion-label>
