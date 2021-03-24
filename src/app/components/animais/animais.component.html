@@ -1,0 +1,51 @@
+<ion-grid style="padding: 0px;">
+  <ion-row class="first" *ngFor="let agrupamento of agrupamentos">
+    <ion-col size="4" class="ion-align-self-center">
+      <div>
+        <h6 class="ion-text-center">{{ agrupamento.nome }}</h6>
+      </div>
+    </ion-col>
+    <ion-col size="8" class="second" >
+      <div  *ngFor="let subAgrupamento of agrupamento.subAgrupamento"
+      [ngClass]="(agrupamento.subAgrupamento.length>1)?'subagrupamento':'subagrupamentoUnico'"
+      >
+        <div class="subagrupamentoNome">
+          <h6>{{ subAgrupamento.nome }}</h6>
+        </div>
+        <div class="alinhadorDiv">
+          <ion-button (click)="remover(subAgrupamento)"  *ngIf="blnEdit" fill="clear">
+            <ion-icon slot="icon-only" name="remove-circle" color="success" size="large" ></ion-icon>
+          </ion-button>
+        </div> 
+        <div class="quantidade" vertical="center" horizontal="center">
+          <h3>{{ subAgrupamento.quantidade }}</h3>
+        </div>
+        <div class="alinhadorDiv">
+          <ion-button (click)="adicionar(subAgrupamento)"  *ngIf="blnEdit" fill="clear">
+            <ion-icon slot="icon-only" name="add-circle" color="success" size="large" ></ion-icon>
+          </ion-button>
+        </div>
+      </div>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+
+<div *ngIf="isBotaoSalvar">
+  <ion-button 
+    class="btn"
+    (click)="salvarRegistro($event, false)" 
+    expand="block" 
+    [disabled]="(isAlterado)?false:true">
+    Salvar
+  </ion-button>
+</div>
+<div *ngIf="isBotaoEnviar">
+  <ion-button
+  class="btnEnviar"
+    (click)="salvarRegistro($event, true)"
+    expand="block"
+    fill="outline"
+    [disabled]="(isPodeEnviar)?false:true">
+    Enviar
+  </ion-button>
+</div>

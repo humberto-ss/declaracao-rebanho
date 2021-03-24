@@ -1,0 +1,48 @@
+.brasao{
+    width: 80px;
+}
+.texto{
+    font-size: small;
+    color: grey;
+}
+.titulo{
+    margin-top: 3px;
+}
+.borda{border-bottom: solid 1px rgb(173, 171, 171);}
+
+.dados{
+    margin-top: 5px;
+    .preenchido{
+        margin-left: 10px;
+    }
+}
+.comprovante{
+    margin-bottom: 5px; 
+    color: black;
+    font-weight: bold;
+}
+
+.grid_valores{
+    margin-top: 5%;
+    background-color: rgb(224, 222, 222);
+    color:black;
+}
+.documento{
+    border: solid 1px;
+    border-radius: 5px;
+    //margin: 5px;
+}
+.quantidade{
+    font-size: medium;
+    font-weight: bold;
+}
+.div_class{
+    display: inline;
+    margin-left: 27%;
+}
+
+@media screen and (min-width: 700px){
+    .card_class{
+        width:500px;
+    }
+}

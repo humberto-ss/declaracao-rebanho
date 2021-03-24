@@ -3,7 +3,7 @@
     <div ion-grid style="width: 100%;">
       <ion-row>
         <ion-col>
-          <ion-label position="stacked" style="--color:grey;"> Grupo Produtor</ion-label>
+          <ion-label position="stacked" > Grupo Produtor</ion-label>
           <ion-input>{{agronegocio.nomeGrupoProdutor}}</ion-input>
         </ion-col>
       </ion-row>
@@ -12,10 +12,10 @@
           <ion-label position="stacked">Espécie Animal</ion-label>
           <ion-input>{{agronegocio.especieAnimal.nome}}</ion-input>
         </ion-col>
-        <ion-col size=3>
-          <ion-label position="stacked">Status</ion-label>
-          <ion-input *ngIf="agronegocio.status">Ativo</ion-input>
-          <ion-input *ngIf="!agronegocio.status">Inativo</ion-input>
+        <ion-col size=4>
+          <ion-label position="stacked" >Status</ion-label>
+          <ion-input *ngIf="agronegocio.status === tipoEnvioEnum.EM_ANALISE" disabled>Em Análise</ion-input>
+          <ion-input *ngIf="agronegocio.status === tipoEnvioEnum.PENDENTE" disabled>Pendente</ion-input>
         </ion-col>
       </ion-row>
     </div>

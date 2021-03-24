@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { TipoLancamentoDTO } from 'src/app/DTOs/tipoLancamentoDTO';
 import { LancamentoService } from 'src/app/services/lancamento.service';
-import { TiposLancamentosModel } from './tipos-lancamentos.model';
 
 @Component({
   selector: 'app-tipos-lancamentos',
@@ -8,17 +8,19 @@ import { TiposLancamentosModel } from './tipos-lancamentos.model';
   styleUrls: ['./tipos-lancamentos.component.scss'],
 })
 export class TiposLancamentosComponent implements OnInit {
-  tiposLancamentosModel : TiposLancamentosModel[];
-  tipoLancamentoSelecionado : TiposLancamentosModel;
+  tiposLancamentos : TipoLancamentoDTO[] = [];
+  tipoLancamentoSelecionado : TipoLancamentoDTO;
 
   constructor(private lancamentoService:LancamentoService) { }
 
   ngOnInit() {
-    this.tiposLancamentosModel = this.lancamentoService.tiposLancamentos;
+    this.tiposLancamentos = this.lancamentoService.tiposLancamentos;
+    this.tipoLancamentoSelecionado = this.lancamentoService.tipoLancamentoSelecionado
   }
 
-  setTipoLancamentoSelecionado(tipoLancamentoSelecionado:TiposLancamentosModel){
+  setTipoLancamentoSelecionado(tipoLancamentoSelecionado:TipoLancamentoDTO){
     this.lancamentoService.tipoLancamentoSelecionado = tipoLancamentoSelecionado;
+    this.lancamentoService.changeStatus(true)
   }
 
 }

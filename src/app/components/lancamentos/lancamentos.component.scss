@@ -8,7 +8,15 @@ ion-label{
 }
 .enviado{
     color:#065621;
+    align-self: flex-end;
   }
-.naoEnviado{
+.pendente{
     color:red;
+    align-self: flex-end;
+}
+.local{
+    font-size: 24px;
+}
+#first{
+    margin-bottom: 5px;
 }

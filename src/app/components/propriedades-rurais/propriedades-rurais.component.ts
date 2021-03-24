@@ -18,13 +18,6 @@ export class PropriedadesRuraisComponent implements OnInit {
   constructor(private propriedadeService : PropriedadeService) { }
 
   ngOnInit() {
-  //  this.propriedadeService.propriedades.subscribe(prop =>{
-  //   this.propriedadeService.populaPropriedades().subscribe( prop =>{
-  //   this.propriedades = prop;
-  //  })
-    //this.propriedadeSelecionada = this.propriedades[0];
-    // this.propriedade = this.propriedades[0];
-    // this.propriedadeService.changePropriedade(this.propriedades[0]);
     if(this.propriedadeSelecionada)
       this.setPropriedadeSelecionada();
   }

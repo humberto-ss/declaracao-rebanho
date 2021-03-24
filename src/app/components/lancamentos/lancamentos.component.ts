@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { RouterLink } from '@angular/router';
+import { NavController } from '@ionic/angular';
 import { LancamentosDTO } from 'src/app/DTOs/lancamentosDTO';
 import { LancamentoService } from 'src/app/services/lancamento.service';
+import { TipoEnvioEnum } from '../../util/tipoEnvioEnum'
 // import { LancamentoModel} from './lancamento.model';
 
 @Component({
@@ -9,34 +12,22 @@ import { LancamentoService } from 'src/app/services/lancamento.service';
   styleUrls: ['./lancamentos.component.scss'],
 })
 export class LancamentosComponent implements OnInit {
-  lancamentosDTO: LancamentosDTO[]
-  // lancamentos: LancamentoModel[] =[]
+  lancamentosDTO:  LancamentosDTO[]
   constructor(private lancamentoService:LancamentoService) { 
-
   }
   
   ngOnInit() {
-    this.lancamentosDTO =  this.lancamentoService.obtemLancamentosPorAgronegocio()
-    // this.transfereDTOtoModel();
+    this.lancamentoService.obtemLancamentosPorAgronegocio()
+    .then(data => this.lancamentosDTO = data)
+    .catch(error=>console.log("Erro ao obter Lancamentos por Agronegocio",error));
+  }
+
+  selectedLancamento(lancamento: LancamentosDTO){
+    this.lancamentoService.lancamentoSelecionado = lancamento;
+  }
+
+  get tipoEnvio(){
+    return TipoEnvioEnum;
   }
   
-  ionViewWillEnter(){
-  }
-  
-  // transfereDTOtoModel(){
-  //   for(let lancDTO of this.lancamentosDTO){
-  //     let lancamentoModel: LancamentoModel;
-  //     var qtd: number = 0;
-  //     for(let sub of lancDTO.subAgrupamento){
-  //         qtd +=sub.quantidade;
-  //     }
-  //     lancamentoModel = new LancamentoModel(
-  //       lancDTO.id,
-  //       lancDTO.dtLancamento,
-  //       this.lancamentoService.tiposLancamentos.find(tipo => tipo.id === lancDTO.tipoLancamento),
-        
-  //     )
-  //     this.lancamentos.push(lancamentoModel)
-  //   }
-  // }
 }

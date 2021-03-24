@@ -1,3 +1,20 @@
-<p>
-  finalidades-criacao works!
-</p>
+<ion-list>
+  <ion-item>
+    <ion-label position="stacked">Finalidade de Criação</ion-label>
+    <ion-select
+      interface="popover"
+      [value]="tipoFinalidadeSelecionado"
+      [(ngModel)]="tipoFinalidadeSelecionado"
+      (ionChange)="setTipoFinalidadeSelecionado(tipoFinalidadeSelecionado)"
+      [interfaceOptions]="{'cssClass': 'mycomponent-wider-popover'}"
+      [disabled]="isDisabled()"
+    >
+      <ion-select-option
+        *ngFor="let tipo of tiposFinalidade"
+        [value]="tipo"
+      >
+        {{ tipo.descricao}}
+      </ion-select-option>
+    </ion-select>
+  </ion-item>
+</ion-list>

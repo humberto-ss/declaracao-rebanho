@@ -1,10 +1,12 @@
-<ion-list>
-  <ion-item *ngFor="let lancamento of lancamentosDTO" [routerLink]="['lancamento/'+ lancamento?.id]">
+<ion-list *ngIf="lancamentosDTO">
+  <ion-item *ngFor="let lancamento of lancamentosDTO" (click)="selectedLancamento(lancamento)" [routerLink]="['lancamento']">
     <div ion-grid style="width: 100%;">
       <ion-row>
-        <ion-col size="7"> 
-          <ion-label position="stacked">Tipo Lançamento</ion-label>
-          <h6> {{lancamento.tipoLancamento.nome}}</h6>
+        <ion-col size="12"> 
+          <ion-label position="stacked" id="first">Tipo Lançamento</ion-label>
+          <ion-text *ngIf="lancamento.tipoLancamento"> 
+            {{lancamento.tipoLancamento.descricao}}
+          </ion-text>
         </ion-col>
       </ion-row>
       <ion-row>
@@ -12,18 +14,30 @@
           <ion-label position="stacked">Data:</ion-label>
           <h6>{{lancamento.dtLancamento}}</h6>
         </ion-col >
-        <ion-col *ngIf="lancamento.blnEnviado" class="ion-text-center">
+        <ion-col *ngIf="lancamento.tipoEnvio === tipoEnvio.LOCAL" class="ion-text-center">
           <ion-label position=stacked>status</ion-label>
-          <ion-icon class="enviado" name="checkmark-done-outline" size="large" style="align-self: flex-end;"></ion-icon>
-          <!-- <ion-icon class="enviado" name="checkmark-circle-outline" size="large" ></ion-icon> -->
-          <ion-text>Enviado</ion-text>
-        </ion-col>
-        <ion-col *ngIf="!lancamento.blnEnviado" class="ion-text-center">
-          <ion-icon class="naoEnviado" name="checkmark-outline" size="large"></ion-icon>
-          <!-- <ion-icon class="naoEnviado" name="ellipse-outline" size="large"></ion-icon> -->
+          <ion-icon class="local" name="pencil-outline"></ion-icon>
           <ion-text>Não Enviado</ion-text>
+          <!-- <ion-icon class="naoEnviado" name="ellipse-outline" size="large"></ion-icon> -->
         </ion-col>
+        <ion-col *ngIf="lancamento.tipoEnvio === tipoEnvio.PENDENTE" class="ion-text-center">
+          <ion-label position=stacked>status</ion-label>
+          <ion-icon class="pendente" name="checkmark-outline" size="large" ></ion-icon>
+          
+          <ion-text>Aguardando conexão...</ion-text>
+          <!-- <ion-icon class="enviado" name="checkmark-circle-outline" size="large" ></ion-icon> -->
+        </ion-col>
+        <ion-col *ngIf="lancamento.tipoEnvio === tipoEnvio.SUCESSO" class="ion-text-center">
+          <ion-label position=stacked>status</ion-label>
+          <ion-icon class="enviado" name="checkmark-done-outline" size="large"></ion-icon>
+          <ion-text>Enviado</ion-text>
+          <!-- <ion-icon class="enviado" name="checkmark-circle-outline" size="large" ></ion-icon> -->
+        </ion-col>
+        
       </ion-row>
     </div>
   </ion-item>
 </ion-list>
+<div *ngIf="!lancamentosDTO" class="ion-text-center">
+  <ion-spinner color="success"></ion-spinner>
+</div>

@@ -3,12 +3,18 @@ ion-button{
     --background: #C0DAC6;
     margin-left: 40%;
 }
-ion-label{
-    color: grey !important;
-}
+
 .enviado{
     color:#065621;
+    margin: 0%;
   }
 .naoEnviado{
     color:red;
+}
+.alinha{
+    margin-top: 10px;
+    font-size: medium !important;
+}
+ion-label{
+    --color:grey !important;
 }

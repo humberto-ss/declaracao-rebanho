@@ -8,4 +8,14 @@ export class Util{
         var yyyy = today.getFullYear();
         return `${dd}/${mm}/${yyyy}`;
     }
+    getRandomId(): number{
+        return Math.floor(Math.random()*1000);
+    }
+    getFirstDateOfLastYear(year:number = null):Date{
+        let dateInicio = new Date();
+        dateInicio.setDate(1)
+        dateInicio.setMonth(0)
+        dateInicio.setFullYear(new Date().getFullYear()-1)
+        return dateInicio;
+    }
 }

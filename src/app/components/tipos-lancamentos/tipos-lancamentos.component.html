@@ -9,10 +9,10 @@
       [interfaceOptions]="{'cssClass': 'mycomponent-wider-popover'}"
     >
       <ion-select-option
-        *ngFor="let tipo of tiposLancamentosModel"
+        *ngFor="let tipo of tiposLancamentos"
         [value]="tipo"
       >
-        {{ tipo.nome }}
+        {{ tipo.descricao }}
       </ion-select-option>
     </ion-select>
   </ion-item>

@@ -4,20 +4,38 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-<ion-grid>
-  <ion-row>
-    <ion-col  class="ion-text-center" size="12" size-sm="8" offset-sm="2">
-      <ion-item >
-        <ion-label position="floating">CPF</ion-label>
-        <ion-input type="text" maxlength=14 required=true></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label position="floating">Senha</ion-label>
-        <ion-input type="password" required=true></ion-input>
-      </ion-item>
-      <ion-button color="success" (click)="onLogin()">Login</ion-button>
-    </ion-col>
-  </ion-row>
-</ion-grid>
+<ion-content class="ion-padding">
+  
+  <ion-grid class="grid_class">
+    <ion-row>
+      <ion-col class="ion-text-center" size="12" size-sm="8" offset-sm="2">
+        <ion-card >
+          <ion-card-content>
+            <ion-grid>
+              <ion-row>
+                <ion-col  class="ion-text-center" >
+                  <ion-item >
+                    <ion-label position="floating">CPF</ion-label>
+                    <ion-input type="text" maxlength=14 required=true></ion-input>
+                  </ion-item>
+                  <ion-item>
+                    <ion-label position="floating">Senha</ion-label>
+                    <ion-input type="password" required=true></ion-input>
+                  </ion-item>
+                  <ion-button color="success" (click)="onLogin()">Login</ion-button>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col class="ion-texte-center">
+                  <ion-text color="dark">
+                    <h6>* Para realização de teste basta clicar em Login</h6>
+                  </ion-text>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-card-content>
+        </ion-card> 
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

@@ -8,8 +8,8 @@
             interface="popover"
             [value]="propriedadeSelecionada"
             [(ngModel)]="propriedadeSelecionada"
-            (ionChange)="setPropriedadeSelecionada(propriedadeSelecionada)"
-            css-class="width:100% !important;"
+            (ionChange)="setPropriedadeSelecionada()"
+            [interfaceOptions]="{'cssClass': 'mycomponent-wider-popover'}"
           >
             <ion-select-option
               *ngFor="let propriedade of propriedades"

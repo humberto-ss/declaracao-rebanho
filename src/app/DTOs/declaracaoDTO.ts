@@ -1,15 +1,21 @@
-import { TipoExploracaoModel } from "../components/tipos-exploracao/tipo-exploracao.model";
+import { TipoEnvioEnum } from "../util/tipoEnvioEnum";
 import { RacaDTO } from "./racaDTO";
 import { SubAgrupamento } from "./subAgrupamentoDTO";
+import { TipoExploracaoDTO } from "./tipoExploracaoDTO";
+import { TipoFinalidadeDTO } from "./tipoFinalidadeDTO";
 
 export interface DeclaracaoDTO{
     id: number,
     idAgronegocio: number,
+    idGrupoProdutor?: number,
     dtDeclaracao: string,
-    statusEnvio: boolean,
+    tipoEnvio: TipoEnvioEnum,
     dtEnvio?:string,
-    subAgrupamento: SubAgrupamento[],
     raca?:RacaDTO,
-    tipoExploracao: TipoExploracaoModel
-    // finalidadeCriacao: Fin
+    idTipoExploracao: number,
+    tipoExploracao?:TipoExploracaoDTO,
+    idTipoFinalidadeCriacao: number,
+    tipoFinalidadeCriacao?: TipoFinalidadeDTO,
+    subAgrupamento: SubAgrupamento[]
+    
 }

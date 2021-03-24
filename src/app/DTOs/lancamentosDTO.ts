@@ -1,12 +1,14 @@
-import { TiposLancamentosModel } from '../components/tipos-lancamentos/tipos-lancamentos.model';
-import { SubAgrupamento } from './subAgrupamentoDTO'
+import { SubAgrupamento } from './subAgrupamentoDTO';
+import { TipoLancamentoDTO } from './tipoLancamentoDTO';
+import { TipoEnvioEnum } from '../util/tipoEnvioEnum';
 
 export interface LancamentosDTO{
     id: number,
     idAgronegocio: number,
     dtLancamento: string,
-    tipoLancamento: TiposLancamentosModel,
-    blnEnviado: boolean,
+    idTipoLancamento: number,
+    tipoLancamento?: TipoLancamentoDTO,
+    tipoEnvio: TipoEnvioEnum,
     dtEnvio?: string,
     subAgrupamento: SubAgrupamento[]
 }

@@ -9,8 +9,10 @@ import { LancamentosComponent } from "./lancamentos/lancamentos.component";
 import { DeclaracoesComponent } from "./declaracoes/declaracoes.component";
 import { TiposLancamentosComponent } from "./tipos-lancamentos/tipos-lancamentos.component";
 import { TiposExploracaoComponent } from "./tipos-exploracao/tipos-exploracao.component";
-import { BovinosComponent } from "./especie/bovinos/bovinos.component";
-import { OvinosComponent } from "./especie/ovinos/ovinos.component";
+import { AnimaisComponent } from "./animais/animais.component";
+import { FinalidadesCriacaoComponent } from "./finalidades-criacao/finalidades-criacao.component";
+import { ComprovanteComponent } from "./comprovante/comprovante.component";
+
 
 @NgModule({
   imports: [IonicModule, FormsModule, CommonModule, RouterModule],
@@ -21,8 +23,9 @@ import { OvinosComponent } from "./especie/ovinos/ovinos.component";
     DeclaracoesComponent,
     TiposLancamentosComponent,
     TiposExploracaoComponent,
-    BovinosComponent,
-    OvinosComponent
+    FinalidadesCriacaoComponent,
+    AnimaisComponent,
+    ComprovanteComponent
   ],
   exports: [
     PropriedadesRuraisComponent,
@@ -31,8 +34,9 @@ import { OvinosComponent } from "./especie/ovinos/ovinos.component";
     DeclaracoesComponent,
     TiposLancamentosComponent,
     TiposExploracaoComponent,
-    BovinosComponent,
-    OvinosComponent
+    FinalidadesCriacaoComponent,
+    AnimaisComponent,
+    ComprovanteComponent
   ],
 })
 export class ComponentsModule {}

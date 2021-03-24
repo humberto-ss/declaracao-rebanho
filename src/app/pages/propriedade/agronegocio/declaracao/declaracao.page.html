@@ -1,9 +1,48 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>declaracao</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center">Declaração</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+  <ion-grid *ngIf="tipoEnvioEnum.SUCESSO !== getTipoEnvio()">
+    <ion-row>
+      <ion-col size="12" size-sm="8" offset-sm="2" >
+        <app-finalidades-criacao></app-finalidades-criacao>
+      </ion-col>
+      <ion-col size="12" size-sm="8" offset-sm="2" >
+        <app-tipos-exploracao></app-tipos-exploracao>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12" size-sm="8" offset-sm="2">
+        <app-animais 
+        (salvar)="salvarDeclaracao($event)" 
+        (enviar)="enviarDeclaracao($event)" 
+        [tipoEnvio]="getTipoEnvio()" 
+        [declaracaoSelecionada]="declaracao"
+        [demandante]="'declaracao'"
+        >
+      </app-animais>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <!-- <ion-grid *ngIf="tipoEnvioEnum.SUCESSO === getTipoEnvio()"  id="grid-comprovante"> -->
+  <ion-grid *ngIf="tipoEnvioEnum.SUCESSO === getTipoEnvio()"  class="grid_class">
+    <app-comprovante [declaracaoSelecionada]="declaracao" ></app-comprovante>
+    <ion-row *ngIf="tipoEnvioEnum.SUCESSO === getTipoEnvio()" >
+      <ion-col size="12" size-sm="8" offset-sm="2">
+        <div>
+        <ion-fab vertical="bottom" horizontal="end" slot="floating">
+          <ion-fab-button  color="dark"  (click)="exportPdf()">
+            <ion-icon name="arrow-down-outline"></ion-icon>
+          </ion-fab-button>
+        </ion-fab>
+      </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

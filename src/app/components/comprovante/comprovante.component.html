@@ -1,0 +1,67 @@
+<ion-row >
+  <ion-col size="12" size-sm="8" offset-sm="2" class="column_class">
+    <ion-card  class="card_class">
+      <ion-card-content id="grid-comprovante">
+        <div class="ion-text-center" >
+          <img src="assets/img/brasao.svg" class="brasao">
+        </div>
+        <div class="ion-text-center titulo">
+          <ion-text color="medium" class="texto">ESTADO DO RIO GRANDE DO SUL</ion-text>
+        </div>
+        <div class="ion-text-center titulo">
+          <ion-text color="medium" class="texto">{{nomeSecretaria}}</ion-text>
+        </div>
+        <div class="ion-text-center titulo borda">
+          <ion-text color="medium" class="texto">{{nomeDepartamento}}</ion-text>
+        </div>
+        <div class="ion-text-center titulo borda comprovante">
+          <ion-text color="dark" class="texto">COMPROVANTE DE DECLARAÇÃO ANUAL OBRIGATÓRIA</ion-text>
+        </div>
+        <ion-grid class="ion-no-padding">
+          <ion-row>
+            <ion-col >
+              <ion-text color="medium" class="texto">PROPRIEDADE </ion-text>  
+            </ion-col>
+            <ion-col>
+              <ion-text color="dark" class="texto preenchido">{{agronegocio.propriedadeRural.nome | uppercase}}</ion-text>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-text color="medium" class="texto">GRUPO PRODUTOR </ion-text>
+            </ion-col>
+            <ion-col>
+              <ion-text color="dark" class="texto preenchido">{{agronegocio.nomeGrupoProdutor | uppercase}}</ion-text>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-text color="medium" class="texto">AGRONEGÓCIO </ion-text>
+            </ion-col>
+            <ion-col>
+              <ion-text color="dark" class="texto preenchido">{{agronegocio.especieAnimal.nome | uppercase}}</ion-text>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+        <ion-grid class="grid_valores">
+          <ion-row *ngFor="let agrupamento of agrupamentos" class="ion-align-items-center borda">
+            <ion-col class="col_agrupamento">
+                <ion-text>{{agrupamento.nome}}</ion-text>
+            </ion-col>
+            <ion-col class="col_subagrupamento">
+              <div *ngFor="let subagrupamento of agrupamento.subAgrupamento">
+                <div style="display: inline;">
+                  <ion-text>{{subagrupamento.nome}}</ion-text>
+                </div>
+                <div class="div_class" >
+                <ion-text class="quantidade">{{subagrupamento.quantidade}}</ion-text>
+                </div>
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+  </ion-col> 
+</ion-row>
+

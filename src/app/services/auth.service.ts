@@ -14,4 +14,7 @@ export class AuthService {
   login(){
     this._isUserLogin = true;
   }
+  logout(){
+    this._isUserLogin = false;
+  }
 }

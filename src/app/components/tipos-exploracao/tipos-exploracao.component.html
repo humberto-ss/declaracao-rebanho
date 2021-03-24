@@ -1,18 +1,19 @@
 <ion-list>
   <ion-item>
-    <ion-label position="stacked">Tipos de Lançamento</ion-label>
+    <ion-label position="stacked">Tipos de Exploração</ion-label>
     <ion-select
       interface="popover"
-      [value]="tipoLancamentoSelecionado"
-      [(ngModel)]="tipoLancamentoSelecionado"
-      (ionChange)="setTipoLancamentoSelecionado(tipoLancamentoSelecionado)"
+      [value]="tipoExploracaoSelecionado"
+      [(ngModel)]="tipoExploracaoSelecionado"
+      (ionChange)="setTipoExploracaoSelecionado(tipoExploracaoSelecionado)"
       [interfaceOptions]="{'cssClass': 'mycomponent-wider-popover'}"
+      [disabled]="isDisabled()"
     >
       <ion-select-option
-        *ngFor="let tipo of tiposLancamentosModel"
+        *ngFor="let tipo of tiposExploracao"
         [value]="tipo"
       >
-        {{ tipo.nome }}
+        {{ tipo.descricao}}
       </ion-select-option>
     </ion-select>
   </ion-item>

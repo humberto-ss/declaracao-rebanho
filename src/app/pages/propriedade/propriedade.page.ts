@@ -16,26 +16,22 @@ export class PropriedadePage implements OnInit, OnDestroy {
   constructor(private propriedadeService: PropriedadeService) { }
 
   ngOnInit() {
-    this.propriedadeService.propriedades.subscribe(props =>{
-      this.propriedadesPage = props;
-    })
-    
   }
 
   ionViewWillEnter(){
     if(this.selecionada)
       return;
-
     this.isLoading= true;
-    this.subs= this.propriedadeService.populaPropriedades().subscribe( 
-      ()=>{
-        this.isLoading=false;
+
+  this.subs =  this.propriedadeService.propriedadesController.subscribe(
+      (props)=>{
+        this.propriedadesPage = props;
+        this.isLoading = false;
         if(!this.selecionada && this.propriedadesPage){
-          this.selecionada = this.propriedadesPage[0];
+                this.selecionada = this.propriedadesPage[0];
         }
       }
-    )
-    
+    )    
   }
 
   ngOnDestroy(){
