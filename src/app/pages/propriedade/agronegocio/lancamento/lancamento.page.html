@@ -8,17 +8,23 @@
 </ion-header>
 
 <ion-content>
-  <ion-grid *ngIf="lancamento" >
-    <ion-row *ngIf="!isTipoEnvioLocal">
+  <ion-grid *ngIf="lancamento && !isTipoEnvioLocal" >
+    <ion-row *ngIf="!isTipoEnvioLocal" >
       <ion-col size="12" size-sm="8" offset-sm="2">
-          <ion-label position="stacked">Tipo Lançamento</ion-label>
-          <ion-text>{{lancamento.tipoLancamento.descricao}}</ion-text>
+        <div class="espacador"><ion-label position="stacked">Tipo Lançamento</ion-label></div>
+        <div class="espacador-left"><ion-text>{{lancamento.tipoLancamento.descricao}}</ion-text></div>
       </ion-col>
     </ion-row>
     <ion-row>
-      <ion-col size="12" size-sm="8" offset-sm="2" >
-        <ion-label position="stacked">Data</ion-label>
-        <ion-text>{{lancamento.dtLancamento}}</ion-text>
+      <ion-col size="8" size-sm="4" offset-sm="2" >
+        <div class="espacador"><ion-label position="stacked">Data</ion-label></div>
+        <div class="espacador-left"><ion-text>{{lancamento.dtLancamento}}</ion-text></div>
+      </ion-col>
+      <ion-col size="4" size-sm="2" offset-sm="2" >
+        <div class="espacador"><ion-label position="stacked">Status</ion-label></div>
+        <div class="espacador-left"><ion-text *ngIf="lancamento.tipoEnvio === tipoEnvioEnum.EM_ANALISE">Em Análise</ion-text></div>
+        <div class="espacador-left"><ion-text *ngIf="lancamento.tipoEnvio === tipoEnvioEnum.PENDENTE">Aguardando Conexão</ion-text></div>
+        <div class="espacador-left"><ion-text *ngIf="lancamento.tipoEnvio === tipoEnvioEnum.SUCESSO">OK</ion-text></div>
       </ion-col>
     </ion-row>
   </ion-grid>
@@ -31,9 +37,7 @@
     </ion-row>
     <ion-row class="ion-no-padding">
       <ion-col size="12" size-sm="8" offset-sm="2" id="separador" class="ion-text-center">
-        <!-- <ion-item  > -->
-          <ion-label>Quantidade</ion-label>
-        <!-- </ion-item> -->
+        <ion-label>Quantidade</ion-label>
       </ion-col>
     </ion-row>
     <ion-row>

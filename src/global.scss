@@ -28,6 +28,9 @@
 ion-toolbar {
     color:#065621;
     --background: #C0DAC6;
+    ion-back-button{
+      --color:#065621;
+    }
   }
   ion-toolbar ion-title{
     font-size: 25px;
@@ -36,4 +39,7 @@ ion-toolbar {
 ion-item{
   --color-activated:#229751;
   --color-focused:#229751;
+}
+ion-menu-button{
+  --color:#065621;
 }

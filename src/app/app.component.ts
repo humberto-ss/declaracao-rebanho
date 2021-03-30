@@ -35,6 +35,6 @@ export class AppComponent{
     this.router.navigateByUrl('/auth');
   }
   openAvaliacao(){
-    window.open("http://www.google.com")
+    window.open("https://forms.gle/4kz8ZM19yRf3hKqu9")
   }
 }

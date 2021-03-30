@@ -66,9 +66,13 @@ export class DeclaracaoPage implements OnInit {
     this._declaracao = this.populaDeclaracao(data);
     this.declaracaoService.salvar(this._declaracao);
   }
-  enviarDeclaracao(data: SubAgrupamento[]){
+
+  async enviarDeclaracao(data: SubAgrupamento[]){
     if(!this.validar(data))
       return
+    
+      if(await this.showAlert("Enviar Declaração", "Você realmente deseja enviar a Declaração ?", false) ===false)
+        return 
     
     if(!this.declaracao)
       this._declaracao = this.populaDeclaracao(data)
@@ -94,17 +98,17 @@ export class DeclaracaoPage implements OnInit {
   private validar(data: SubAgrupamento[]):boolean{
     let blnRetorno: boolean = true;
     if(data.length<=0){
-      this.erroAlert("ERRO", "Nenhum Animal Adicionado")
+      this.showAlert("ERRO", "Nenhum Animal Adicionado")
       this.declaracaoService.changeStatus(true);
       return false;
     }
     if(!this.declaracaoService.tipoFinalidadeSelecionado){
-      this.erroAlert("ERRO", "Uma Finalidade de criação deve ser selecionada.")
+      this.showAlert("ERRO", "Uma Finalidade de criação deve ser selecionada.")
       this.declaracaoService.changeStatus(true);
       return false;
     }
     if(!this.declaracaoService.tipoExploracaoSelecionado){
-      this.erroAlert("ERRO", "Um Tipo de Exploracao deve ser selecionado.")
+      this.showAlert("ERRO", "Um Tipo de Exploracao deve ser selecionado.")
       this.declaracaoService.changeStatus(true);
       return false;
     }
@@ -113,43 +117,46 @@ export class DeclaracaoPage implements OnInit {
       subAgrup => {
         if(subAgrup.quantidade<0){
           let msg = "Não é possível declarar valores negativos, para alterar os valores deverá ser criado novos lançamentos."
-          this.erroAlert("ERRO - Valor Negativo", msg)
+          this.showAlert("ERRO - Valor Negativo", msg)
           this.declaracaoService.changeStatus(true);
           blnRetorno = false
         }
       })
       return blnRetorno;
   }
-  downloadPDF(){
-    pdfMake.vfs = pdfFonts.pdfMake.vfs; 
-    
-    const docDef={
-      pageSize:'A4',
-      pageOrientation:'portrait',
-      pageMargins:[20,10,40,60],
-      content:[
-        {
-          table:{
-            body:[
-              ['Coluna correta']
-            ]
-          }
-        }
-      ]
+
+  async showAlert(header:string,message:string, blnError:boolean=true) {
+    let blnRetorno:boolean = false;
+    var alert;
+    if(blnError){
+       alert = await this.alertController.create({
+        header: header,
+        // subHeader: 'Subtitle',
+        message: message,
+        buttons: ['OK']
+      });
+    }else{
+      alert = await this.alertController.create({
+        header: header,
+        message: message,
+        buttons: [{
+          text:'Cancelar',
+          role:'cancel',
+          cssClass:'danger',
+          handler:()=>{
+            blnRetorno = false;
+          }},{
+            text:'Sim',
+            cssClass:'success',
+            handler:()=>{
+              blnRetorno = true;
+            }}
+        ]
+      });
     }
-    pdfMake.createPdf(docDef).download('declaracao.pdf');
-  }
-
-
-  async erroAlert(header:string,message:string) {
-    const alert = await this.alertController.create({
-      header: header,
-      // subHeader: 'Subtitle',
-      message: message,
-      buttons: ['OK']
-    });
-
-    await alert.present();
+    alert.present();
+    await alert.onWillDismiss();
+    return blnRetorno;
   }
 
   get declaracao(){
@@ -163,22 +170,7 @@ export class DeclaracaoPage implements OnInit {
     return TipoEnvioEnum; 
   }
 
-  htmlToPdf(){
-    const options ={
-      filename:'comprovante_declaracao.pdf',
-      image:{type:'jpeg'}, //png,webp
-      html2canvas:{},//windownWidth:2480, windowHeight: 3508
-      jsPDF:{orientation: 'portrait'}
-    };
-    const content: Element = document.getElementById('grid-comprovante');
-
-    html2pdf()
-      .from(content)
-      .set(options)
-      .save()
-
-  }
-  exportPdf(){
+  imprimir(){
     const div = document.getElementById('grid-comprovante');
     const options = { background: 'white', height: 845, width: 700 };
     domtoimage.toPng(div, options).then((dataUrl) => {
@@ -188,7 +180,7 @@ export class DeclaracaoPage implements OnInit {
         //Add image Url to PDF
         // doc.addImage(dataUrl, 'PNG', 0, 0, 210, 340);
         doc.addImage(dataUrl, 'PNG', 0, 0, 210, 340);
-        doc.save('pdfDocument.pdf');
+        doc.save('comprovante_Declaracao_Rebanho.pdf');
     })
   }
 }

@@ -147,4 +147,7 @@ export class LancamentoPage implements OnInit {
   get isTipoEnvioLocal(){
     return (this.lancamento.tipoEnvio === TipoEnvioEnum.LOCAL)?true:false;
   }
+  public get tipoEnvioEnum(): typeof TipoEnvioEnum {
+    return TipoEnvioEnum; 
+  }
 }

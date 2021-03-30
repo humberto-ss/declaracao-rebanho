@@ -1,0 +1,37 @@
+ion-card{
+    height: 180px;
+    width: 100%;
+}
+ion-slides{
+    height:100%;
+    width:100%;
+}
+.titulo{
+    font-size: x-large;
+    color: black;
+    font-weight: bold;
+}
+.subtitulo{
+    font-weight: bold;
+}
+.texto{
+    font-size: medium;
+    color: rgb(104, 102, 102);
+    margin-bottom: 5%;
+}
+.botao{
+    // font-size: smaller;
+    color: rgb(0, 99, 0);
+}
+.espacador{
+    margin-top: 10%;
+    margin-bottom: 10%;
+}
+.grid_slide{
+    margin-bottom: 10%;
+    margin-top: 10%;
+}
+.image{
+    border: solid 1px;
+    width:500px;
+}

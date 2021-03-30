@@ -35,7 +35,6 @@ export class AnimaisComponent implements OnInit {
     private agronegocioService: AgronegocioService,
     private declaracaoService: DeclaracaoService
   ) {
-    // this.getAgrupamentoPorEspecie();
     this._agrupamento = this.controllerService.getAgrupamentosPorEspecieAnimal(this.agronegocioService.agronegocioSelecionado.idEspecieAnimal)
     this.isConstituiRebanho();
   }
@@ -67,14 +66,6 @@ export class AnimaisComponent implements OnInit {
     }
 
   }
-
-  // private getAgrupamentoPorEspecie(){
-  //   this._agrupamento = null;
-  //   this._agrupamento = this.controllerService.agrupamentos
-  //   .filter((value) =>
-  //       value.idEspecieAnimal === this.agronegocioService.agronegocioSelecionado.idEspecieAnimal
-  //   );
-  // }
 
   populaQuantidade() {
     var objetoSelecionado:SubAgrupamento[]=[];

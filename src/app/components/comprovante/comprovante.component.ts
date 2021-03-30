@@ -36,26 +36,25 @@ export class ComprovanteComponent implements OnInit {
             {
               if(sub.idSubAgrupamento === subagrupamento.idSubAgrupamento){
                 subagrupamento.quantidade = sub.quantidade
-                console.log(sub.quantidade)
               }
             })
         })
     }
   }
 
-  htmlToPdf(){
-    const options ={
-      filename:'comprovante_declaracao.pdf',
-      image:{type:'jpeg'}, //png,webp
-      html2canvas:{},
-      jsPDF:{orientation: 'landscape'}
-    };
-    const content: Element = document.getElementById('grid-comprovante');
-    content.innerHTML = ''
-    html2pdf()
-      .from(content)
-      .set(options)
-      .save()
+  // htmlToPdf(){
+  //   const options ={
+  //     filename:'comprovante_declaracao.pdf',
+  //     image:{type:'jpeg'}, //png,webp
+  //     html2canvas:{},
+  //     jsPDF:{orientation: 'landscape'}
+  //   };
+  //   const content: Element = document.getElementById('grid-comprovante');
+  //   content.innerHTML = ''
+  //   html2pdf()
+  //     .from(content)
+  //     .set(options)
+  //     .save()
 
-  }
+  // }
 }

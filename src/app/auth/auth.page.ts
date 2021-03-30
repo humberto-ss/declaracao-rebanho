@@ -32,6 +32,7 @@ export class AuthPage implements OnInit {
 
   redirectTo(){
     // setTimeout( () => this.route.navigateByUrl("/propriedade") ,5000);
-    this.route.navigateByUrl("/propriedade");
+    this.route.navigateByUrl("/slides");
+    // this.route.navigateByUrl("/propriedade");
   }
 }

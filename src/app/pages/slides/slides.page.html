@@ -1,23 +1,86 @@
 <ion-content>
-  <ion-slides pager="true" style="height: 100%;">
+  <ion-slides pager="true">
     <ion-slide>
-      <div size="12" size-sm="8" offset-sm="2" name="ion-text-center">
-        <ion-card>
-          <ion-card-content>
-            Awesome content
-            <h1>Slide 1</h1>
-          </ion-card-content>
-        </ion-card>
+      <div>
+        <ion-grid fixed class="grid_slide">
+          <ion-row>
+            <ion-col size="12" size-sm="8" offset-sm="2" class="ion-text-center titulo">Olá!</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="12" size-sm="8" offset-sm="2" class="ion-text-center subtitulo">
+              Seja bem-vindo ao DeclaraRS
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="12" size-sm="8" offset-sm="2" class="ion-text-justify texto">
+              <div class="espacador">
+                <ion-text>
+                  O DeclaraRS é uma aplicação de um Trabalho de Conclusão de Curso desenvolvido em parceria com a SEAPDR.
+                </ion-text>
+              </div>
+              <div>
+                <ion-text>
+                A aplicação <u>simula</u> uma Declaração Anual de Rebanho de forma totalmente digital, feita para o produtor rural.
+                </ion-text>
+              </div>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="12" size-sm="8" offset-sm="2" class="ion-text-center botao espacador">
+              Arraste para continuar
+              <ion-icon name="arrow-undo-outline" size="large"></ion-icon>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="12">
+              <ion-button (click)="redirectTo()" expand="block" fill="clear" class="botao">
+                PULAR EXPLICAÇÃO
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+
       </div>
     </ion-slide>
     <ion-slide>
-      <h1>Slide 2</h1>
+      <div>
+        <ion-grid fixed class="grid_slide">
+          <ion-row>
+            <ion-col size="12" size-sm="8" offset-sm="2" class="ion-text-center titulo">
+              Atualmente....
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="12" size-sm="8" offset-sm="2" class="ion-text-center texto">
+              <ion-text>...a declaração anual de rebanho é feita através de um formulário preenchido a mão</ion-text>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="12" size-sm="8" offset-sm="2" class="ion-text-center">
+              <img src="../../../assets/img/declaracao-img.png" class="image"> 
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="12" size-sm="8" offset-sm="2" class="ion-text-center botao espacador">
+              Arraste para continuar
+              <ion-icon name="arrow-undo-outline" size="large"></ion-icon>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="12">
+              <ion-button (click)="redirectTo()" expand="block" fill="clear" class="botao">
+                PULAR EXPLICAÇÃO
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </div>
     </ion-slide>
     <ion-slide>
-      <h1>Slide 3</h1>
       <div>
-        <ion-button (click)="redirectTo()" expand="block" fill="clear" shape="round">
-          Passar
+        <ion-button (click)="redirectTo()" expand="block" shape="round" color="success">
+          <ion-icon name="arrow-forward-outline" slot="end" size="small" ></ion-icon>
+          Iniciar
         </ion-button>
       </div>
     </ion-slide>
