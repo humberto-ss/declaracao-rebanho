@@ -24,8 +24,8 @@ ion-slides{
     color: rgb(0, 99, 0);
 }
 .espacador{
-    margin-top: 10%;
-    margin-bottom: 10%;
+    margin-top: 5%;
+    margin-bottom: 5%;
 }
 .grid_slide{
     margin-bottom: 10%;
@@ -34,4 +34,20 @@ ion-slides{
 .image{
     border: solid 1px;
     width:500px;
+}
+.lancamento{
+    width: 250px;
+    border: solid 1px;
+}
+.img-avaliacao{
+    width:150px;
+}
+@media screen and (min-width: 700px){
+    .lancamento{
+        width:350px;
+        border: solid 1px;
+    }
+    .img-avaliacao{
+        width: 250px;
+    }
 }
