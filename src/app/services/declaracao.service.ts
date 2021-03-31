@@ -238,6 +238,7 @@ export class DeclaracaoService implements OnInit {
       return
       
     this._declaracoes = await this.controllerService.getAllDeclaracoes() as DeclaracaoDTO[];
+    this._declaracoes.reverse();
   }
 
   private async getTiposExploracao() {
